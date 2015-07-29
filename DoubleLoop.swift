@@ -12,15 +12,13 @@ class DoubleLoop<T where T: Comparable, T: ForwardIndexType>: SequenceType{
 	var secondRange: Range<T>
 	let copySecondRange: Range<T>
 	
-	typealias ReturnTuple = (T, T)
-	
 	init(r1: Range<T>, r2: Range<T>){
 		firstRange = r1
 		secondRange = r2
 		copySecondRange = r2
 	}
 	
-	typealias Generator = AnyGenerator<ReturnTuple>
+	typealias Generator = AnyGenerator<(T,T)>
 	
 	func generate() -> Generator {
 		
@@ -43,5 +41,3 @@ infix operator ∫ { associativity left precedence 134 }
 func ∫ <T: ForwardIndexType>(left: Range<T>, right: Range<T>) -> DoubleLoop<T>{
 	return DoubleLoop(r1: left, r2: right)
 }
-
-
