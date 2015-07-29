@@ -7,14 +7,19 @@
 //
 
 struct DoubleLoop<T: ForwardIndexType>: SequenceType{
-	let firstRange: Range<T>
-	let secondRange: Range<T>
+	
+	private let values: [ReturnTuple]
 	
 	typealias ReturnTuple = (T, T)
 	
 	init(r1: Range<T>, r2: Range<T>){
-		firstRange = r1
-		secondRange = r2
+		var temp = [ReturnTuple]()
+		for x in r1{
+			for y in r2{
+				temp.append((x,y))
+			}
+		}
+		values = temp
 	}
 	
 	typealias Generator = AnyGenerator<ReturnTuple>
@@ -24,14 +29,8 @@ struct DoubleLoop<T: ForwardIndexType>: SequenceType{
 		
 		return anyGenerator {
 			defer{ index++ }
-			var count = 0
-			for x in self.firstRange{
-				for y in self.secondRange{
-					if count == index{
-						return (x,y)
-					}
-					count++
-				}
+			if index < self.values.count{
+				return self.values[index]
 			}
 			return nil
 		}
@@ -45,3 +44,6 @@ func ∫ <T: ForwardIndexType>(left: Range<T>, right: Range<T>) -> DoubleLoop<T>
 	return DoubleLoop(r1: left, r2: right)
 }
 
+for (x,y) in 1..<5 ∫ 5...10{
+	print("\(x) \(y)")
+}
