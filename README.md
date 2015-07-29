@@ -21,6 +21,8 @@ for (week, day) in 1...10 ∫ 1...7{
 }
 ```
 
+Tip: The `∫` symbol can be typed using Option-B.
+
 This is shorthand for the DoubleLoop initializer. You can also achieve the same goal using this code:
 
 ```swift
