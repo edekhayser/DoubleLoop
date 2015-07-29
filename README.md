@@ -33,4 +33,4 @@ for (week, day) in DoubleLoop(1...10, 1...7){
 
 DoubleLoop is written in Swift 2.0, and uses nothing but the Swift Standard Library.
 
-To use DoubleLoop, simply drag *DoubleLoop.swift* into your project. 
+To use DoubleLoop, simply drag **DoubleLoop.swift** into your project. 
